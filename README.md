@@ -1,4 +1,4 @@
 # dakh
 Layout widget written as a jQuery plugin 
 
-Inspired by Spring layout.
+Inspired by Swing layout.
