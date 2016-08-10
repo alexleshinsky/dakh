@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dahk Demo</title>
+    <link rel="stylesheet" href="/javascripts/kendo/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="/javascripts/kendo/styles/kendo.default.min.css" />
+    <style>
+        .container { width: 960px; height: 800px; overflow: hidden }
+        .boat { padding: 0; margin: 0 }
+        .boat1 { width: 100px; height: 100px; background-color: sandybrown; }
+        .boat2 { width: 200px; height: 100px; background-color: darkseagreen; }
+        .boat3 { width: 300px; height: 50px; background-color: #f4ccca; }
+        .boat4 { width: 200px; height: 100px; background-color: #86bcbb; }
+        .spacer { height: 10px; }
+        .cntrl { width: 40px; }
+        .dock { width: 480px; background-color: #d6cbff; }
+        /*.left_side { width: 480px;}*/
+        .button_bar { height: 80px; }
+        .reset { width: 60px; }
+    </style>
+
+</head>
+<body>
+
+<div id="divContainer" class="container"></div>
+<div id="divDock" class="dock"></div>
+<div id="divLeftSide" class="left_side"></div>
+
+<div class="fleet">
+    <div class="boat boat1"><p>Lorem Ipsum</p></div>
+    <div class="spacer"></div>
+    <div class="boat boat2"><p>Dolor sit amet</p></div>
+    <div class="spacer"></div>
+    <div class="boat boat3"><p>Consectetur adipiscing elit</p></div>
+    <div class="spacer"></div>
+    <div class="boat boat4"><p>Sed do eiusmod tempor</p></div>
+</div>
+<div class="button_bar">
+    <div>
+        <button class="cntrl">N</button>
+        <button class="cntrl">NX</button>
+        <button class="cntrl">E</button>
+        <button class="cntrl">EX</button>
+        <button class="cntrl">W</button>
+        <button class="cntrl">WX</button>
+        <button class="cntrl">S</button>
+        <button class="cntrl">SX</button>
+    </div>
+    <div>
+        <button class="mvmnt">-></button>
+        <button class="mvmnt"><-</button>
+        <button class="mvmnt">>-<</button>
+        <button class="mvmnt"><-></button>
+        <button class="mvmnt">UP</button>
+        <button class="mvmnt">DN</button>
+        <button class="mvmnt" title="Vertical Shrink">VS</button>
+        <button class="mvmnt" title="Vertical Expand">VE</button>
+    </div>
+    <div class="spacer"></div>
+    <div>
+        <button class="reset">Reset</button>
+    </div>
+</div>
+
+
+
+<script type="text/javascript" src="/javascripts/kendo/js/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/kendo/js/kendo.all.min.js"></script>
+<script type="text/javascript" src="/javascripts/dahk.js"></script>
+
+<script type="application/javascript">
+
+    (function() {
+        var c = $('.container');
+        var ls = $('.left_side');
+        var d = $('.dock');
+        c.dahk({ source: d, command: 'E' });
+        c.dahk({ source: ls, command: 'WX' });
+
+        ls.dahk({ source: $('.button_bar'), command: 'S' });
+        ls.dahk({ source: $('.fleet'), command: 'NX' });
+
+        $('.reset').kendoButton({
+            click: function() {
+                var boats = $('#divDock').dahk({ source: null, command: 'clear' });
+                var count = boats.length;
+            }
+        });
+        $('.cntrl').kendoButton({
+            click: function(e) {
+                var name = e.event.target.textContent;
+                var source = $('.boat.selected');
+                $('#divDock').dahk({ source: source, command: name });
+            }
+        });
+        $('.boat').on('click', function( ) {
+            clearSelected();
+            $(this).addClass('selected');
+        });
+        var clearSelected = function() {
+            $('.boat').removeClass('selected');
+        };
+
+        $('.mvmnt').kendoButton({
+            click: function(e) {
+                var name = e.event.target.textContent;
+                var d = $('.dock');
+                var off = d.offset();
+                var w = d.width();
+                var h = d.height();
+                var nOff = off, nW = w, nH = h;
+                switch (name) {
+                    case '->':
+                        nOff.left += 20;
+                        break;
+                    case '<-':
+                        nOff.left -= 20;
+                        break;
+                    case 'UP':
+                        nOff.top -= 20;
+                        break;
+                    case 'DN':
+                        nOff.top += 20;
+                        break;
+                    case '>-<':
+                        nW -= 20;
+                        break;
+                    case '<->':
+                        nW += 20;
+                        break;
+                    case 'VS':
+                        nH -= 20;
+                        break;
+                    case 'VE':
+                        nH += 20;
+                        break;
+                }
+                d.offset(nOff);
+                d.width(nW);
+                d.height(nH);
+            }
+        });
+
+    })();
+</script>
+</body>
+
+</html>
