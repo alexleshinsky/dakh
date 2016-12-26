@@ -26,7 +26,7 @@
                             value.origW = w;
                         }
                     }
-                    });
+                });
                 setTimeout(function () {
                     $.dahk_cache.trackDim();
                 }, 100);
@@ -47,7 +47,7 @@
             if (d) {
                 var id = d.attr('id');
                 $.dahk_cache = ( !$.dahk_cache ) ? {} : $.dahk_cache;
-                 var cache = $.dahk_cache;
+                var cache = $.dahk_cache;
                 if ( !cache[ id ] ) {
                     cache[ id ] = {};
                     var cash = cache[ id ];
@@ -68,7 +68,7 @@
             }
         },
 
-    put: function(request) {
+        put: function(request) {
             var d = request.dock;
             var cache = this.init(d);
             var s = request.source;
@@ -116,65 +116,65 @@
                 s.detach();
                 s.addClass('dahk_boat');
                 d.append(s);
-                    s.css('margin', 0).css('position', 'absolute');
-                    switch (v) {
-                        case 'N':
-                            sOff = { left: cache.P.left + cache.N[0], top: cache.P.top };
-                            s.offset(sOff);
-                            s.width(cache.N[1] - cache.N[0]);
-                            cache.W[0] += sH;
-                            cache.flags.n = true;
-                            break;
-                        case 'NX':
-                            sOff = { left: cache.P.left + cache.N[0], top: cache.P.top };
-                            s.offset(sOff);
-                            s.width(cache.N[1] - cache.N[0]);
-                            s.height(cache.W[1] - cache.W[0]);
-                            cache.flags.nx = true;
-                            break;
-                        case 'S':
-                            sOff = { left: cache.P.left + cache.N[0], top: cache.P.top + cache.W[1] - sH };
-                            s.offset(sOff);
-                            s.width(cache.N[1] - cache.N[0]);
-                            cache.W[1] -= sH;
-                            cache.flags.s = true;
-                            break;
-                        case 'SX':
-                            sOff = { left: cache.P.left + cache.N[0], top: cache.P.top + cache.W[0] };
-                            s.offset(sOff);
-                            s.width(cache.N[1] - cache.N[0]);
-                            s.height(cache.W[1] - cache.W[0]);
-                            cache.flags.sx = true;
-                            break;
-                        case 'W':
-                            sOff = { left: cache.P.left, top: cache.W[0] + cache.P.top };
-                            s.offset(sOff);
-                            s.height(cache.W[1] - cache.W[0]);
-                            cache.N[0] += sW;
-                            cache.flags.w = true;
-                            break;
-                        case 'WX':
-                            sOff = { left: cache.P.left, top: cache.W[0] + cache.P.top };
-                            s.offset(sOff);
-                            s.height(cache.W[1] - cache.W[0]);
-                            s.width(cache.N[1] - cache.N[0]);
-                            cache.flags.wx = true;
-                            break;
-                        case 'E':
-                            sOff = { left: cache.P.left + cache.N[1] - sW, top: cache.W[0] + cache.P.top };
-                            s.offset(sOff);
-                            s.height(cache.W[1] - cache.W[0]);
-                            cache.N[1] -= sW;
-                            cache.flags.e = true;
-                            break;
-                        case 'EX':
-                            sOff = { left: cache.P.left + cache.N[0], top: cache.W[0] + cache.P.top };
-                            s.offset(sOff);
-                            s.height(cache.W[1] - cache.W[0]);
-                            s.width(cache.N[1] - cache.N[0]);
-                            cache.flags.ex = true;
-                            break;
-                    }
+                s.css('margin', 0).css('position', 'absolute');
+                switch (v) {
+                    case 'N':
+                        sOff = { left: cache.P.left + cache.N[0], top: cache.P.top };
+                        s.offset(sOff);
+                        s.width(cache.N[1] - cache.N[0]);
+                        cache.W[0] += sH;
+                        cache.flags.n = true;
+                        break;
+                    case 'NX':
+                        sOff = { left: cache.P.left + cache.N[0], top: cache.P.top };
+                        s.offset(sOff);
+                        s.width(cache.N[1] - cache.N[0]);
+                        s.height(cache.W[1] - cache.W[0]);
+                        cache.flags.nx = true;
+                        break;
+                    case 'S':
+                        sOff = { left: cache.P.left + cache.N[0], top: cache.P.top + cache.W[1] - sH };
+                        s.offset(sOff);
+                        s.width(cache.N[1] - cache.N[0]);
+                        cache.W[1] -= sH;
+                        cache.flags.s = true;
+                        break;
+                    case 'SX':
+                        sOff = { left: cache.P.left + cache.N[0], top: cache.P.top + cache.W[0] };
+                        s.offset(sOff);
+                        s.width(cache.N[1] - cache.N[0]);
+                        s.height(cache.W[1] - cache.W[0]);
+                        cache.flags.sx = true;
+                        break;
+                    case 'W':
+                        sOff = { left: cache.P.left, top: cache.W[0] + cache.P.top };
+                        s.offset(sOff);
+                        s.height(cache.W[1] - cache.W[0]);
+                        cache.N[0] += sW;
+                        cache.flags.w = true;
+                        break;
+                    case 'WX':
+                        sOff = { left: cache.P.left, top: cache.W[0] + cache.P.top };
+                        s.offset(sOff);
+                        s.height(cache.W[1] - cache.W[0]);
+                        s.width(cache.N[1] - cache.N[0]);
+                        cache.flags.wx = true;
+                        break;
+                    case 'E':
+                        sOff = { left: cache.P.left + cache.N[1] - sW, top: cache.W[0] + cache.P.top };
+                        s.offset(sOff);
+                        s.height(cache.W[1] - cache.W[0]);
+                        cache.N[1] -= sW;
+                        cache.flags.e = true;
+                        break;
+                    case 'EX':
+                        sOff = { left: cache.P.left + cache.N[0], top: cache.W[0] + cache.P.top };
+                        s.offset(sOff);
+                        s.height(cache.W[1] - cache.W[0]);
+                        s.width(cache.N[1] - cache.N[0]);
+                        cache.flags.ex = true;
+                        break;
+                }
             }
             return flOk;
         },
@@ -186,8 +186,16 @@
                 if (cache[ id ]) {
                     ret = cache[ id ].boats;
                     var kids = d.children('.dahk_boat');
-                    cache[ id ] = undefined;
-                    kids.detach();
+                    cache[id].flags.ex = false;
+                    cache[id].flags.e = false;
+                    cache[id].flags.wx = false;
+                    cache[id].flags.w = false;
+                    cache[id].flags.sx = false;
+                    cache[id].flags.s = false;
+                    cache[id].flags.nx = false;
+                    cache[id].flags.n = false;
+                    kids.css('display', 'none');
+                    kids.detach().appendTo('body');
                 }
             }
             return ret;
